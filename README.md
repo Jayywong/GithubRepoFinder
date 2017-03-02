@@ -4,7 +4,7 @@ Jason Wong  [@ryanliszewski](https://github.com/ryanliszewski)
 
 **GithubRepoFinder** is a GitHub Repo search app using the [GitHub API](https://developer.github.com/v3/search/#search-repositories).
 
-Time spent: **2** hours spent in total
+Time spent: **3.5** hours spent in total
 
 ## User Stories
 
