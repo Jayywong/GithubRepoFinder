@@ -10,10 +10,12 @@ import UIKit
 import MBProgressHUD
 
 // Main ViewController
-class RepoResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class RepoResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SettingsPresentingViewControllerDelegate{
 
     var searchBar: UISearchBar!
     var searchSettings = GithubRepoSearchSettings()
+    
+    
 
     var repos: [GithubRepo]!
 
@@ -89,6 +91,31 @@ class RepoResultsViewController: UIViewController, UITableViewDelegate, UITableV
                 print(error)
         })
     }
+    
+    func didSaveSettings(settings: GithubRepoSearchSettings){
+        print("test")
+        self.searchSettings = settings
+        
+        self.doSearch()
+    }
+    
+    func didCancelSettings(){
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        
+        let navController = segue.destination as! UINavigationController
+        let vc = navController.topViewController as! SearchSettingViewController
+        
+        vc.settings.minStars = self.searchSettings.minStars
+        vc.delegate = self 
+        
+    }
+    
+    
 }
 
 // SearchBar methods
